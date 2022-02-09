@@ -1,8 +1,10 @@
 const express = require("express");
 const { v4: uuidv4 } = require("uuid");
 const { sequelize, User } = require("./models");
+const cors = require("cors")
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 app.post("/users", async (req, res) => {
   const body = req.body;
@@ -25,8 +27,8 @@ app.get("/users", async (req, res) => {
   }
 });
 
-app.listen({ port: 5000 }, async () => {
-  console.log("Connecting to port 5000.");
+app.listen({ port: 5001}, async () => {
+  console.log("Connecting to port 5001.");
   await sequelize.sync({ force: true });
   console.log("Connected");
 });
