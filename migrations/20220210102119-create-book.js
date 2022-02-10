@@ -11,14 +11,14 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      pubyear: {
-        type: Sequelize.INTEGER
-      },
       bookId: {
         type: Sequelize.UUID
       },
+      pubYear: {
+        type: Sequelize.INTEGER
+      },
       genres: {
-        type: Sequelize.ARRAY(Sequelize.TEXT)
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       createdAt: {
         allowNull: false,
