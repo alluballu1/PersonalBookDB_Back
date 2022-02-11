@@ -16,11 +16,17 @@ loginRouter.post("/", async (request, response) => {
     });
   }
 
+  console.log(user[0].dataValues)
+
+
   const userForToken = {
-    name: user.name,
-    userId: user.userId,
+    name: user[0].dataValues.name,
+    userId: user[0].dataValues.userId
   };
   const token = jwt.sign(userForToken, process.env.SECRET);
+
+  console.log( jwt.verify(token, process.env.SECRET))
+
   const { passwordHash, createdAt, updatedAt, ...rest } = user[0].dataValues;
   response.status(200).send({ token, name: user.name, user: rest });
 });

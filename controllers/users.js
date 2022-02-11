@@ -3,13 +3,14 @@ const usersRouter = require("express").Router();
 const { User, Book } = require("../models");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
+const { userExtractor } = require("../utils/middleware");
 
 usersRouter.post("/", async (req, res) => {
   const body = req.body;
   try {
     const passwordHash = await bcrypt.hash(
       body.password,
-      Number(process.env.SALT)
+      10
     );
     const user = await User.create({
       name: body.name,
@@ -22,13 +23,19 @@ usersRouter.post("/", async (req, res) => {
   }
 });
 
-usersRouter.get("/:userId", async (req, res) => {
+usersRouter.get("/:userId", userExtractor, async (req, res) => {
+  
+  console.log(req.user.userId)
   const userId = req.params.userId;
   try {
+
+    if (req.user.userId !== req.params.userId) {
+      return res.json("Invalid token or userId").status(500)
+      
+    }
     const data = await User.findAll({ include: [Book],
-      attributes: { where: { userId } },
+     where: { userId:userId }
     });
-    console.log(req.params);
 
     res.json(data);
   } catch (error) {
@@ -36,7 +43,7 @@ usersRouter.get("/:userId", async (req, res) => {
   }
 });
 
-usersRouter.get("/", async (req, res) => {
+usersRouter.get("/",  async (req, res) => {
   try {
     const data = await User.findAll({include: [Book],
       attributes: { exclude: ["passwordHash"] },
