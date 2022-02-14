@@ -13,6 +13,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      author: {
+        type: Sequelize.STRING
+      },
       bookId: {
         type: Sequelize.UUID
       },
@@ -24,6 +27,9 @@ module.exports = {
         allowNull:false
       },
       genres: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
+      bookTypes: {
         type: Sequelize.ARRAY(Sequelize.STRING)
       },
       createdAt: {

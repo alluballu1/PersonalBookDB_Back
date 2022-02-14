@@ -21,7 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     name: {type:DataTypes.STRING, allowNull:false, unique:true},
     bookId: DataTypes.UUID,
     pubYear: DataTypes.INTEGER,
-    genres: DataTypes.ARRAY(Sequelize.STRING)
+    author:DataTypes.STRING,
+    genres: DataTypes.ARRAY(Sequelize.STRING),
+    bookTypes: DataTypes.ARRAY(Sequelize.STRING)
   }, {
     sequelize,
     modelName: 'Book',

@@ -3,8 +3,8 @@ const { Book, User } = require("../models");
 const { v4: uuidv4 } = require("uuid");
 
 booksRouter.post("/", async (req, res) => {
+  
   const body = req.body;
-
   const user = await User.findOne({ where: { userId: body.userId } });
   if (!user) return;
   try {
@@ -13,12 +13,13 @@ booksRouter.post("/", async (req, res) => {
       name: body.name,
       pubYear: body.pubYear,
       genres: body.genres,
+      bookTypes:body.bookTypes,
       bookId: uuidv4(),
       uuid: user.dataValues.userId,
     });
     res.json(book);
   } catch (error) {
-    res.json(body).status(500);
+    res.json(error.name).status(500);
   }
 });
 

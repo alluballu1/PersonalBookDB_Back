@@ -34,7 +34,7 @@ usersRouter.get("/:userId", userExtractor, async (req, res) => {
       
     }
     const data = await User.findAll({ include: [Book],
-     where: { userId:userId }
+     where: { userId:userId },attributes: { exclude: ["passwordHash","createdAt", "updatedAt"] }
     });
 
     res.json(data);
