@@ -15,6 +15,7 @@ booksRouter.post("/", async (req, res) => {
       genres: body.genres,
       bookTypes:body.bookTypes,
       bookId: uuidv4(),
+      author:body.author,
       uuid: user.dataValues.userId,
     });
     res.json(book);
