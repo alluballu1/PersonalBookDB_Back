@@ -3,7 +3,6 @@ const { Book, User } = require("../models");
 const { v4: uuidv4 } = require("uuid");
 
 booksRouter.post("/", async (req, res) => {
-  
   const body = req.body;
   const user = await User.findOne({ where: { userId: body.userId } });
   if (!user) return;
@@ -13,12 +12,23 @@ booksRouter.post("/", async (req, res) => {
       name: body.name,
       pubYear: body.pubYear,
       genres: body.genres,
-      bookTypes:body.bookTypes,
+      bookTypes: body.bookTypes,
       bookId: uuidv4(),
-      author:body.author,
+      author: body.author,
       uuid: user.dataValues.userId,
     });
     res.json(book);
+  } catch (error) {
+    res.json(error.name).status(500);
+  }
+});
+
+booksRouter.delete("/", async (req, res) => {
+  try {
+    const body = req.body;
+    const data = await Book.findOne({ where: { bookId: body.bookId } })
+    data.destroy()
+    res.json("Deleted successfully.").status(200)
   } catch (error) {
     res.json(error.name).status(500);
   }
