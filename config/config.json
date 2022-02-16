@@ -20,6 +20,11 @@
     "database": "df7dh61jpf4fnn",
     "host": "ec2-52-210-120-210.eu-west-1.compute.amazonaws.com",
     "dialect": "postgres",
-    "port":5432
+    "port":5432,
+    "dialectOptions": {
+        "require": true,
+        "rejectUnauthorized": false 
+      }
+    }
   }
 }
