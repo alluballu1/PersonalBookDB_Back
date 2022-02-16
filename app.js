@@ -15,6 +15,6 @@ app.use("/books", booksRouter)
 app.use("/login", loginRouter)
 app.listen({ port: process.env.PORT }, async () => {
   console.log("Connecting to port 5001.");
-  await sequelize.sync({force:true});
+  //await sequelize.sync({force:true});
   console.log("Connected");
 });
