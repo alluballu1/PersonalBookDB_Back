@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(tokenExtractor)
+app.use(express.static("build"));
 app.use("/api/users", usersRouter)
 app.use("/api/books", booksRouter)
 app.use("/api/login", loginRouter)
