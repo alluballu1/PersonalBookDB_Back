@@ -26,9 +26,9 @@ booksRouter.post("/", async (req, res) => {
 booksRouter.delete("/", async (req, res) => {
   try {
     const body = req.body;
-    const data = await Book.findOne({ where: { bookId: body.bookId } })
-    data.destroy()
-    res.json("Deleted successfully.").status(200)
+    const data = await Book.findOne({ where: { bookId: body.bookId } });
+    data.destroy();
+    res.json("Deleted successfully.").status(200);
   } catch (error) {
     res.json(error.name).status(500);
   }
@@ -40,6 +40,24 @@ booksRouter.get("/", async (req, res) => {
     res.json(data).status(200);
   } catch (error) {
     res.json(error).status(500);
+  }
+});
+
+booksRouter.put("/", async (req, res) => {
+  try {
+    const body = req.body;
+    const data = await Book.findOne({ where: { bookId: body.bookId } });
+    data.update({
+      name: body.name,
+      pubYear: body.pubYear,
+      author: body.author,
+      genres: body.genres,
+      bookTypes: body.bookTypes,
+    });
+    data.save()
+    res.json(data).status(200);
+  } catch (error) {
+    req.json(error).status(500);
   }
 });
 
