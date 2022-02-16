@@ -26,8 +26,6 @@ loginRouter.post("/", async (request, response) => {
     };
     const token = jwt.sign(userForToken, process.env.SECRET);
 
-    console.log(jwt.verify(token, process.env.SECRET));
-
     const { passwordHash, createdAt, updatedAt, ...rest } = user[0].dataValues;
     response.status(200).send({ token, name: user.name, user: rest });
   } catch (error) {

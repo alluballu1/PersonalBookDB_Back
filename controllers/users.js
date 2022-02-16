@@ -43,7 +43,7 @@ usersRouter.get("/:userId", userExtractor, async (req, res) => {
   }
 });
 
-usersRouter.get("/",  async (req, res) => {
+/* usersRouter.get("/",  async (req, res) => {
   try {
     const data = await User.findAll({include: [Book],
       attributes: { exclude: ["passwordHash"] },
@@ -52,6 +52,6 @@ usersRouter.get("/",  async (req, res) => {
   } catch (error) {
     res.json(error).status(500);
   }
-});
+}); */
 
 module.exports = usersRouter;

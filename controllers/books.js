@@ -7,7 +7,6 @@ booksRouter.post("/", async (req, res) => {
   const user = await User.findOne({ where: { userId: body.userId } });
   if (!user) return;
   try {
-    console.log(user.dataValues.userId);
     const book = await Book.create({
       name: body.name,
       pubYear: body.pubYear,
@@ -34,14 +33,14 @@ booksRouter.delete("/", async (req, res) => {
   }
 });
 
-booksRouter.get("/", async (req, res) => {
+/* booksRouter.get("/", async (req, res) => {
   try {
     const data = await Book.findAll({ include: [User] });
     res.json(data).status(200);
   } catch (error) {
     res.json(error).status(500);
   }
-});
+}); */
 
 booksRouter.put("/", async (req, res) => {
   try {
