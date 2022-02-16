@@ -13,7 +13,7 @@ app.use(tokenExtractor)
 app.use("/users", usersRouter)
 app.use("/books", booksRouter)
 app.use("/login", loginRouter)
-app.listen({ port: 5001 }, async () => {
+app.listen({ port: process.env.PORT }, async () => {
   console.log("Connecting to port 5001.");
   await sequelize.sync();
   console.log("Connected");
