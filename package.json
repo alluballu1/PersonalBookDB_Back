@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "nodemon app",
+    "start" : "node app",
     "migrate:status": "sequelize db:migrate:status",
     "migrate:down": "sequelize db:migrate:undo:all",
     "migrate:up": "sequelize db:migrate"
