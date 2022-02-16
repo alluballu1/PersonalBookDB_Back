@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "salasana",
-    "database": "book_database",
-    "host": "127.0.0.1",
+    "username": "irvcllnckgvnpz",
+    "password": "29889c28581e2fd40a683bb4f5254cb1d662430286a586fea25eedf3f932f2de",
+    "database": "df7dh61jpf4fnn",
+    "host": "ec2-52-210-120-210.eu-west-1.compute.amazonaws.com",
     "dialect": "postgres",
     "port":5432
   },
@@ -20,7 +20,6 @@
     "database": "book_database",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    
     "port":5432
   }
 }
